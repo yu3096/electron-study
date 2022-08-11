@@ -93,7 +93,6 @@ export default class Room extends React.Component {
                 if(data.hasChildren("messages")){
                     const { messages } = this.state || [];
 
-                    console.log(messages);
                     // 추가된 메세지를 state에 할당
                     messages.push(Object.assign({ key: data.key }, data.val()));
                     this.setState({ messages });
