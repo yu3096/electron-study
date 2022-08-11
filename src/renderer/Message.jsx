@@ -25,7 +25,7 @@ export default function Message(props) {
             </div>
             <div className="media-body">
                 <div style={MEDIA_BODY_STYLE}>
-                    <span></span>
+                    <span>{writtenBy.displayName}</span>
                     <span style={TIME_STYLE}>{localeString}</span>
                 </div>
                 <p style={TEXT_STYLE}>{text}</p>

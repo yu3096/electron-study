@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, hashHistory } from 'react-router';
 import Errors from '../Errors';
 import { auth } from "../auth/auth";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 
 const SIGNUP_FORM_STYLE = {
     margin: '0 auto',padding: 30,
@@ -80,15 +80,11 @@ export default class SignupEmail extends React.Component {
 
         createUserWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
-            const currentUser = {
-                id: userCredential.user.uid,
-                email: email,
-                name: name,
-                displayName: name,
-                photoURL: photoURL
-            }
-        })
-        .then(() => {
+            updateProfile(auth.currentUser, {
+              displayName: name
+             ,photoURL: photoURL
+            });
+
             // Email 인증
             let user = auth.currentUser;
             sendEmailVerification(user)

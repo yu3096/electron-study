@@ -75,10 +75,9 @@ export default class Signup extends React.Component {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
-          
-          return updateProfile(user, {
-            displayName: name, photoURL: photoURL
+          updateProfile(auth.currentUser, {
+             displayName: name
+            ,photoURL: photoURL
           });
         })
         .then(() => {
@@ -92,21 +91,6 @@ export default class Signup extends React.Component {
           console.log(errorMessage);
           this.setState({ errors: [error.message] });
         });
-/*
-        // Firebase 신규 계정 생성 처리
-        firebase.auth().createUserWithEmailAndPassword(email, password).then(newUser => {
-            // 사용자 정보 변경하기
-            return newUser.updateProfile({
-                displayName: name,photoURL
-            });
-        }).then(() => {
-            // 채팅방 목록 화면으로 이동하기
-            hashHistory.push('/rooms');
-        }).catch(err => {
-            // 오류발생 시 메시지 출력
-            this.setState({ errors: [err.message] });
-        });
-*/
     }
 
     render() {
