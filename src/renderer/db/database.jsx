@@ -1,4 +1,3 @@
-import { app } from "../config/app";
 import { getDatabase } from "firebase/database";
 // firebase의 firestore 인스턴스를 변수에 저장
 //const database = getFirestore();
